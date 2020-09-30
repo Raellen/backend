@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Location;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -34,4 +35,28 @@ class Frontcontroller extends Controller
         return view('front/news_info',compact('news_which'));
 
     }
+
+    public function profile(Request $request)
+    {
+
+        // dd($request->all());
+
+        //Data-Base
+
+        // DB::table('location_info')->insert(
+        //     ['email' => $request->email,
+        //     'location' =>$request->location,
+        //     'img_url' =>'',
+        //     'location_name' =>$request->location_name,
+        //     'location_description' => $request->location_description
+        //     ]
+        // );
+
+        Location::create($request->all());
+
+        return '成功!';
+
+    }
+
+
 }

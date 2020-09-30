@@ -21,11 +21,13 @@ Route::get('/news',"Frontcontroller@news");
 
 Route::get('/contact_us',"Frontcontroller@contact_us");
 
-Route::get('/news_info/{news_id}',"Frontcontroller@news_info");
+Route::get('/news_info/{something_News_id}',"Frontcontroller@news_info");
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/profile', 'Frontcontroller@profile');
 
 
