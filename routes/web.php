@@ -26,8 +26,17 @@ Route::get('/news_info/{something_News_id}',"Frontcontroller@news_info");
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');
 
 Route::post('/profile', 'Frontcontroller@profile');
 
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+
+    Route::get('news','NewsController@index');
+    Route::get('news/create','NewsController@create');
+    Route::post('news/store','NewsController@store');
+    Route::get('news/edit/{news_id}','NewsController@edit');
+    Route::post('news/update/{news_id}','NewsController@update');
+    Route::get('news/destroy/{news_id}','NewsController@destroy');
+});
 
