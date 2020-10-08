@@ -28,7 +28,7 @@ Auth::routes();
 
 Route::get('/admin', 'HomeController@index')->name('home');
 
-Route::post('/profile', 'Frontcontroller@profile');
+// Route::post('/profile', 'Frontcontroller@profile');
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
 

@@ -16,7 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @yield('js')
+    @yield('css')
 </head>
 <body>
     <div id="app">
@@ -32,7 +32,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/news/">最新消息</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,12 +74,13 @@
         </nav>
 
         <main class="py-4">
-            <
+            <div class="container">
             @yield('content')
+            </div>
         </main>
-  <script src="{{ asset('js/app.js') }}">
-        </script>
-                       @yield('js')
     </div>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
 </body>
 </html>
