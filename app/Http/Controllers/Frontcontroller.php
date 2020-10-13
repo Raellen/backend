@@ -36,6 +36,23 @@ class Frontcontroller extends Controller
 
     }
 
+
+
+    public function product()
+    {
+        $product_list = DB::table('products')->OrderBy('id','desc')->get();
+        return view('front/product',compact('product_list'));
+    }
+
+    public function product_info($product_id)
+    {
+        $product_which = DB::table('products')->Where('id','=',$product_id)->first();
+
+        return view('front/product_info',compact('product_which'));
+
+    }
+
+
     public function profile(Request $request)
     {
 

@@ -15,15 +15,13 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $product_list = products::with('product_Type')->find(1);
-        $Types = productType::all();
-
-        dd($product_list);
-
-        foreach ($product_list as $list) {
-            return view('admin.product.index', compact('news_list'));
-        }
+        $product_list = products::with('product_Type')->get();;
+        // $Types = productType::all();
+        // $product_list = productType::with('product')->get();
+        // dd($product_list);
+        return view('admin.product.index', compact('product_list'));
     }
+
 
     /**
      * Show the form for creating a new resource.

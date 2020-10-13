@@ -23,6 +23,9 @@ Route::get('/contact_us',"Frontcontroller@contact_us");
 
 Route::get('/news_info/{something_News_id}',"Frontcontroller@news_info");
 
+Route::get('/product',"Frontcontroller@product");
+
+Route::get('/product_info/{something_product_id}',"Frontcontroller@product_info");
 
 
 
