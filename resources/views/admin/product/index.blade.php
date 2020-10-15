@@ -41,8 +41,9 @@
             <td>{{$product->price}}</td>
             <td>{{$product->date}}</td>
             <td>{{$product->product_type->name}}</td>
+
             <td>
-                <a href="product/edit/{{$product->id}}" class="btn btn-info">編輯</a>
+                <a href="/product/edit/{{$product->id}}" class="btn btn-info">編輯</a>
                 <button class="btn btn-danger btn_sm">刪除</button>
             </td>
         </tr>

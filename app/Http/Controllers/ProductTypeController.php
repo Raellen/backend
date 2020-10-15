@@ -15,8 +15,9 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
+        $product_types = ProductType::all();
+        return view(('admin.product_type.index'),compact('product_types'));
 
-    //
     }
 
     /**
@@ -26,8 +27,12 @@ class ProductTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product_type.create');
     }
+
+
+    //https://laravel.com/docs/6.x/routing#named-routes
+    //Named Routes
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +42,8 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ProductType::create($request->all());
+        return redirect()->route('product_type.index');
     }
 
     /**
@@ -59,7 +65,9 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product_type = ProductType::find($id);
+
+        return view('admin.product_type.edit',compact('product_type'));
     }
 
     /**
@@ -71,7 +79,11 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product_type = ProductType::find($id);
+        $requestData = $request->all();
+        $product_type->update($requestData);
+        return redirect('/admin/product_type');
+
     }
 
     /**
@@ -82,6 +94,7 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+       ProductType::destroy($id);
+       return redirect()->route('product_type.index');
     }
 }

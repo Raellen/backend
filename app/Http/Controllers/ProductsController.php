@@ -19,6 +19,7 @@ class ProductsController extends Controller
         // $Types = productType::all();
         // $product_list = productType::with('product')->get();
         // dd($product_list);
+
         return view('admin.product.index', compact('product_list'));
     }
 
@@ -63,7 +64,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**
