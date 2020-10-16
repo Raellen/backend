@@ -40,7 +40,7 @@
             <td><img width="200" src="{{$product->info_img}}"></td>
             <td>{{$product->price}}</td>
             <td>{{$product->date}}</td>
-            <td>{{$product->product_type->name}}</td>
+            <td>{{$product->name}}</td>
 
             <td>
                 <a href="/product/edit/{{$product->id}}" class="btn btn-info">編輯</a>

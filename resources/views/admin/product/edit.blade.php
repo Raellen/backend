@@ -17,7 +17,7 @@
 <form method="POST" action="/admin/product/update/{{$product->id}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-  
+
 
     {{-- @foreach ($product_types as $product_type_id)
      <!-- 把舊資料套進下拉式選單 -->

@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Products;
 use App\ProductType;
+use App\ProductImg;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
+
+
 
 class ProductsController extends Controller
 {
@@ -31,7 +37,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $product_types = ProductType::all();
+
+        return view('admin.product.create',compact('product_types'));
     }
 
     /**
@@ -42,7 +50,39 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // $files = $request->file('mutiple_images');
+        // ProductType::create($request->all());
+        // return redirect()->route('product.index');
+        $requsetData = $request->all();
+        // dd($requsetData);
+        //單一檔案
+        if($request->hasFile('img')) {
+            $file = $request->file('img');
+            $path = $this->fileUpload($file,'product');
+            $requsetData['img'] = $path;
+        }
+
+        $new_product =  Products::create($requsetData);
+        $new_product_id = $new_product->id;
+
+        //多個檔案
+        if($request->hasFile('imgs'))
+        {
+            $files = $request->file('imgs');
+            foreach ($files as $file) {
+                //上傳圖片
+                $path = $this->fileUpload($file,'product_imgs');
+                //新增資料進DB
+                $product_img = new ProductImg;
+                $product_img->product_id = $new_product_id;
+                $product_img->img = $path;
+                $product_img->save();
+            }
+        }
+
+        return redirect('/admin/product');
+
     }
 
     /**
@@ -53,7 +93,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -64,7 +104,12 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-       
+        $product = Products::find($id);
+        dd($product->productImgs);
+        $product_types = ProductType::all();
+
+        return view('admin.product.edit',compact('products','product_type'));
+
     }
 
     /**

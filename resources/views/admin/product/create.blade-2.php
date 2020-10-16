@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('css')
@@ -18,45 +17,24 @@
 
     <form method="POST" action="/admin/product/store" enctype="multipart/form-data">
         @csrf
-
         <div class="form-group">
-            <label for="type_id">產品類別</label>
-            <select name="type_id" id="type_id">
-            @foreach ($product_types as $product_type)
-                <option value="{{$product_type->id}}">{{$product_type->name}}</option>
-            @endforeach
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="name">標題</label>
-            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" required>
+            <label for="title">標題</label>
+            <input type="text" class="form-control" id="title" aria-describedby="emailHelp" name="title" required>
 
         </div>
         <div class="form-group">
-            <label for="product_img">上傳主要照片</label>
-            <input type="file" class="form-control-file" id="product_img" name="product_img" required>
+            <label for="sub_title">副標題</label>
+            <input multiple class="form-control" id="sub_title" name="sub_title" required>
+
         </div>
         <div class="form-group">
-            <label for="info_img">上傳多張照片</label>
-            <input type="file" class="form-control-file" id="info_img" name="info_img[]" multiple>
+            <label for="img_url">上傳照片</label>
+            <input type="file" class="form-control-file" id="img_url" name="img_url" required>
         </div>
-
         <div class="form-group">
-            <label for="info">內容</label> <small>3:4</small>
-            <textarea type="text" class="form-control" id="info" rows="10" name="info" required></textarea>
+            <label for="content">內容</label> <small>3:4</small>
+            <textarea type="text" class="form-control" id="content" rows="10" name="content" required></textarea>
         </div>
-
-        <div class="form-group">
-            <label for="price">價錢</label>
-            <input type="number" class="form-control" id="price" aria-describedby="emailHelp" name="price" required>
-        </div>
-
-        <div class="form-group">
-            <label for="date">日期</label>
-            <input type="text" class="form-control" id="date" aria-describedby="emailHelp" name="date" required>
-        </div>
-
 
 
 
@@ -75,7 +53,7 @@
     <script>
         $(document).ready(function() {
             // 要跟textarea的id一樣
-            $('#info').summernote({
+            $('#content').summernote({
                 height: 150,
                 lang: 'zh-TW',
                 popover: {
@@ -119,7 +97,7 @@
                 //埋一個csef TOKEN避免傳資料無法驗證
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('info')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
 

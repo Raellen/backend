@@ -16,5 +16,10 @@ class products extends Model
 
         return $this->belongsTo('App\ProductType','type_id');
     }
+
+    public function productImgs(){
+
+        return $this->hasMany('App\Productimg');
+    }
 }
 
